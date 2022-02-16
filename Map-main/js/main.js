@@ -1,0 +1,36 @@
+function applicationFiltration() {
+  const buttons = document.querySelectorAll("._filter-button");
+  const applications = document.querySelectorAll(".marker");
+
+  function filter(category, markers) {
+    markers.forEach((marker) => {
+      const isMarkerFiltered = marker.classList.contains(category);
+      const isShowAll = category === "All";
+      if (!isMarkerFiltered && !isShowAll) {
+        marker.classList.add("hide");
+      } else {
+        marker.classList.remove("hide");
+      }
+    });
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const currentCategory = button.dataset.filter;
+      filter(currentCategory, applications);
+    });
+  });
+}
+applicationFiltration();
+
+function showSubFilter(target)
+{
+  console.log(target)
+  hideSubFilter();
+  target.classList.toggle('filter-button--active');
+}
+function hideSubFilter()
+{
+  document.querySelectorAll('.filter-button').forEach(marker => marker.classList.remove('filter-button--active'));
+}
+
